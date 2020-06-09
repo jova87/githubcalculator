@@ -17,7 +17,8 @@ operationsArr.forEach((e) =>{
     {
       addNumber(e);
     } else {
-      switch(e.currentTarget.innerHTML) {
+      switch(e.currentTarget.innerHTML) 
+      {
         case "%":
           //percentage
           firstNumber = false;
@@ -26,78 +27,77 @@ operationsArr.forEach((e) =>{
           numberOne = `${numberOne}${znak}`;
           result.innerHTML = numberOne;
           break;
-          case "CE":
-            //delete all numbers
-            firstNumber = true;
-            numberOne = '';
-            numberTwo = '';
-            chosenop = '';
-            result.innerHTML = '0';
-            break;
-            case "DEL":
-              //delete last number
-              del();
-              break;
-              case "=":
-                //equal
-                resultFunc(chosenop);
-                numberOne = result.innerHTML;
-                numberTwo = '';
-                chosenop = '';
-                break;
-                case "+":
-                  //plus
-                  firstNumber = false;
-                  chosenop = '+';
-                  znak = '+';
-                  numberOne = `${numberOne}${znak}`;
-                  result.innerHTML = numberOne;
-                  break;
-                  case "-":
-                    // minus
-                    if(numberOne == '') 
-                    {
-                      numberOne = '-';
-                    } else 
-                    {
-                      znak = '-';
-                      numberOne = `${numberOne}${znak}`;
-                      result.innerHTML = numberOne;
-
-                      numberTwo = '-';
-                      firstNumber = false;
-                      chosenop = '-';
-                    }
-                    break;
-                    case "/":
-                      // divide
-                      firstNumber = false;
-                      chosenop = '/';
-                      znak = '/';
-                      numberOne = `${numberOne}${znak}`;
-                      result.innerHTML = numberOne;
-                      break;
-                      case "X":
-                        // multiply
-                        firstNumber = false;
-                        chosenop = 'X';
-                        znak = 'X';
-                        numberOne = `${numberOne}${znak}`;
-                        result.innerHTML = numberOne;
-                        break;
-                      case ".":
-                        // dot
-                        if(firstNumber) 
-                        {
-                          numberOne = `${numberOne}.`;
-                          result.innerHTML = numberOne;
-                        } else 
-                        {
-                          numberTwo = `${numberTwo}.`;
-                          result.innerHTML = numberTwo;
-                        }
-                        break;
-                  }
+        case "CE":
+          //delete all numbers
+          firstNumber = true;
+          numberOne = '';
+          numberTwo = '';
+          chosenop = '';
+          result.innerHTML = '0';
+          break;
+        case "DEL":
+          //delete last number
+          del();
+          break;
+        case "=":
+          //equal
+          resultFunc(chosenop);
+          numberOne = result.innerHTML;
+          numberTwo = '';
+          chosenop = '';
+          break;
+        case "+":
+          //plus
+          firstNumber = false;
+          chosenop = '+';
+          znak = '+';
+          numberOne = `${numberOne}${znak}`;
+          result.innerHTML = numberOne;
+          break;
+        case "-":
+          // minus
+          if(numberOne == '') 
+          {
+            numberOne = '-';
+          } else 
+          {
+            znak = '-';
+            numberOne = `${numberOne}${znak}`;
+            result.innerHTML = numberOne;
+            numberTwo = '-';
+            firstNumber = false;
+            chosenop = '-';
+          }
+          break;
+        case "/":
+          // divide
+          firstNumber = false;
+          chosenop = '/';
+          znak = '/';
+          numberOne = `${numberOne}${znak}`;
+          result.innerHTML = numberOne;
+          break;
+        case "X":
+          // multiply
+          firstNumber = false;
+          chosenop = 'X';
+          znak = 'X';
+          numberOne = `${numberOne}${znak}`;
+          result.innerHTML = numberOne;
+          break;
+        case ".":
+          // dot
+          if(firstNumber) 
+          {
+            numberOne = `${numberOne}.`;
+            result.innerHTML = numberOne;
+          } else 
+          {
+            numberTwo = `${numberTwo}.`;
+            result.innerHTML = numberTwo;
+          }
+          break;
+      }
     }
   })
 })
@@ -118,37 +118,22 @@ function addNumberTwo(broj) {
 function addNumber(broj) {
   if(firstNumber) 
   {
-    if(result.innerHTML == '0' || result.innerHTML == '') 
-    {
-      if(broj.currentTarget.innerHTML == 0) 
-      {
-        // if target zero
-      } else 
-      {
-        addNumberOne(broj.currentTarget.innerHTML);
-      }
-      
-    } else 
+    if(result.innerHTML != '0' || broj.currentTarget.innerHTML != '0') 
     {
       addNumberOne(broj.currentTarget.innerHTML);
     }
-  } else 
+  } 
+  else 
   {
     //if firstNumber = false
-    if(numberTwo == '') 
-    {
-      if(broj.currentTarget.innerHTML == 0) 
+    if(broj.currentTarget.innerHTML == '0' && result.innerHTML != '0') 
       {
-        // if target zero
-      } else 
+        addNumberTwo(broj.currentTarget.innerHTML);
+      } 
+    else if(broj.currentTarget.innerHTML != '0')
       {
         addNumberTwo(broj.currentTarget.innerHTML);
       }
-      
-    } else 
-    {
-      addNumberTwo(broj.currentTarget.innerHTML);
-    }
   }
 }
 
